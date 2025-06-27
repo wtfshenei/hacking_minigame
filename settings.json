@@ -1,0 +1,16 @@
+{
+  "sequence": [
+    "scan",
+    "connect",
+    "inject",
+    "decrypt",
+    "access",
+    "upload",
+    "unlock",
+    "extract"
+  ],
+  "max_errors": 3,
+  "alarm_duration": 30,
+  "block_duration": 300,
+  "inactivity_timeout": 60
+}

@@ -1,0 +1,24 @@
+{
+  "commands": {
+    "scan": "Analyse les ports ouverts du réseau.",
+    "connect": "Établit une connexion à la machine distante.",
+    "inject": "Injecte un payload dans le buffer cible.",
+    "decrypt": "Déchiffre les fichiers trouvés.",
+    "access": "Tente d’accéder aux fichiers système.",
+    "upload": "Envoie un fichier de contrôle.",
+    "unlock": "Déverrouille le système verrouillé.",
+    "extract": "Récupère les données secrètes.",
+    "ping": "Envoie un ping vers une IP.",
+    "traceroute": "Affiche la route jusqu’à la cible.",
+    "whoami": "Affiche l’identité de l’utilisateur courant.",
+    "ls": "Liste les fichiers.",
+    "sudo": "Tente une élévation de privilèges.",
+    "kill": "Arrête un processus distant.",
+    "format": "Efface un disque.",
+    "nmap": "Scanne le réseau de manière brute.",
+    "rm": "Supprime un fichier.",
+    "mkdir": "Crée un nouveau dossier.",
+    "cd": "Change de répertoire.",
+    "echo": "Répète la commande."
+  }
+}
