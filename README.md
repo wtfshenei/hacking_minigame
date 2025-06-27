@@ -40,9 +40,6 @@ This allows quick and easy reconfiguration depending on the scenario.
 
 - Admin-only override/reset command.
 - Optional sound/QR trigger when the game is solved.
-- Web-based version (for touchscreen / kiosk-like setup).
-- Logging system (timestamped command history).
-- Multiple difficulty profiles.
 
 ---
 
