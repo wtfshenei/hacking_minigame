@@ -2,7 +2,7 @@ import time
 import json
 import os
 
-# --- Chargement des fichiers ---
+# --- Load settings and command data ---
 base_path = os.path.dirname(os.path.abspath(__file__))
 
 with open(os.path.join(base_path, "settings.json"), "r", encoding="utf-8") as f:
@@ -15,26 +15,23 @@ SEQUENCE = settings["sequence"]
 MAX_ERRORS = settings["max_errors"]
 ALARM_DURATION = settings["alarm_duration"]
 
-
 def print_intro():
-    print("""\n*** TERMINAL DE PC-SYDNEY ***
-Tape \033[1mhelp\033[0m pour la liste des commandes disponibles.
+    print("""\n*** TERMINAL DE PIRATAGE ***
+Tape 'help' pour voir la liste des commandes disponibles.
 """)
 
-
 def play_alarm():
-    print("\nALAAAAAAAAARME !")
+    print("\nALAAAAAAARME !")
     for t in range(ALARM_DURATION, 0, -1):
         print(f"  ... {t}")
         time.sleep(1)
     print("\n🚨 ALARME DÉCLENCHÉE 🚨")
 
-
 def show_help():
     print("\nCommandes disponibles :")
-    for cmd, desc in commands_data["commands"].items():
-        print(f"- {cmd} : {desc}")
-
+    for cmd, data in commands_data["commands"].items():
+        print(f"- {cmd} : {data['desc']}")
+    print()
 
 def reset_game():
     return {
@@ -43,7 +40,6 @@ def reset_game():
         "alarm": False
     }
 
-
 def main():
     game = reset_game()
     print_intro()
@@ -51,6 +47,7 @@ def main():
     while True:
         cmd = input("> ").strip().lower()
 
+        # Commands that should never count as errors or apply delay
         if cmd == "help":
             show_help()
             continue
@@ -70,7 +67,7 @@ def main():
             continue
 
         if cmd not in commands_data["commands"]:
-            print("Commande inconnue. Tape 'help' si besoin.")
+            print("Commande inconnue. Tape 'help' pour obtenir de l'aide.")
             game["errors"] += 1
             if game["errors"] >= MAX_ERRORS:
                 game["alarm"] = True
@@ -81,12 +78,18 @@ def main():
                 print_intro()
             continue
 
+        # Apply delay on all known commands (even wrong ones)
+        delay = commands_data["commands"][cmd].get("delay", 0)
+        if delay > 0:
+            print(f"Traitement de la commande '{cmd}'...")
+            time.sleep(delay)
+
+        # Check if it's the correct command in the sequence
         if cmd == SEQUENCE[game["step"]]:
             game["step"] += 1
-            print(
-                f"Commande acceptée ({cmd}). Progression : {game['step']}/{len(SEQUENCE)}")
+            print(f"Commande acceptée ({cmd}). Progression : {game['step']}/{len(SEQUENCE)}")
             if game["step"] == len(SEQUENCE):
-                print("\n--- HACK RÉUSSI ---")
+                print("\n--- PIRATAGE RÉUSSI ---")
                 print("QR Code généré : murder_clue.png")
                 print("Réinitialisation dans 10 secondes...")
                 time.sleep(10)
@@ -94,6 +97,7 @@ def main():
                 print_intro()
             continue
 
+        # Wrong but valid command
         print(f"Commande incorrecte à ce stade ({cmd}).")
         game["errors"] += 1
         if game["errors"] >= MAX_ERRORS:
@@ -103,7 +107,6 @@ def main():
             time.sleep(5)
             game = reset_game()
             print_intro()
-
 
 if __name__ == "__main__":
     main()

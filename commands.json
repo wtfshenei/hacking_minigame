@@ -1,24 +1,84 @@
 {
   "commands": {
-    "scan": "Analyse les ports ouverts du réseau.",
-    "connect": "Établit une connexion à la machine distante.",
-    "inject": "Injecte un payload dans le buffer cible.",
-    "decrypt": "Déchiffre les fichiers trouvés.",
-    "access": "Tente d’accéder aux fichiers système.",
-    "upload": "Envoie un fichier de contrôle.",
-    "unlock": "Déverrouille le système verrouillé.",
-    "extract": "Récupère les données secrètes.",
-    "ping": "Envoie un ping vers une IP.",
-    "traceroute": "Affiche la route jusqu’à la cible.",
-    "whoami": "Affiche l’identité de l’utilisateur courant.",
-    "ls": "Liste les fichiers.",
-    "sudo": "Tente une élévation de privilèges.",
-    "kill": "Arrête un processus distant.",
-    "format": "Efface un disque.",
-    "nmap": "Scanne le réseau de manière brute.",
-    "rm": "Supprime un fichier.",
-    "mkdir": "Crée un nouveau dossier.",
-    "cd": "Change de répertoire.",
-    "echo": "Répète la commande."
+    "scan": {
+      "desc": "Analyse les ports ouverts du réseau.",
+      "delay": 10
+    },
+    "connect": {
+      "desc": "Établit une connexion à la machine distante.",
+      "delay": 15
+    },
+    "inject": {
+      "desc": "Injecte un payload dans le buffer cible.",
+      "delay": 5
+    },
+    "decrypt": {
+      "desc": "Déchiffre les fichiers trouvés.",
+      "delay": 30
+    },
+    "access": {
+      "desc": "Tente d’accéder aux fichiers système.",
+      "delay": 5
+    },
+    "upload": {
+      "desc": "Envoie un fichier de contrôle.",
+      "delay": 20
+    },
+    "unlock": {
+      "desc": "Déverrouille le système verrouillé.",
+      "delay": 15
+    },
+    "extract": {
+      "desc": "Récupère les données secrètes.",
+      "delay": 40
+    },
+    "ping": {
+      "desc": "Envoie un ping vers une IP.",
+      "delay": 10
+    },
+    "traceroute": {
+      "desc": "Affiche la route jusqu’à la cible.",
+      "delay": 0
+    },
+    "whoami": {
+      "desc": "Affiche l’identité de l’utilisateur courant.",
+      "delay": 0
+    },
+    "ls": {
+      "desc": "Liste les fichiers.",
+      "delay": 0
+    },
+    "sudo": {
+      "desc": "Tente une élévation de privilèges.",
+      "delay": 0
+    },
+    "kill": {
+      "desc": "Arrête un processus distant.",
+      "delay": 0
+    },
+    "format": {
+      "desc": "Efface un disque.",
+      "delay": 0
+    },
+    "nmap": {
+      "desc": "Scanne le réseau de manière brute.",
+      "delay": 0
+    },
+    "rm": {
+      "desc": "Supprime un fichier.",
+      "delay": 0
+    },
+    "mkdir": {
+      "desc": "Crée un nouveau dossier.",
+      "delay": 0
+    },
+    "cd": {
+      "desc": "Change de répertoire.",
+      "delay": 0
+    },
+    "echo": {
+      "desc": "Répète la commande.",
+      "delay": 0
+    }
   }
 }
