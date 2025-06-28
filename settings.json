@@ -13,7 +13,7 @@
     "desc": "S\u00e9quence pour r\u00e9ussir le piratage"
   },
   "max_errors": {
-    "value": 2,
+    "value": 3,
     "desc": "Nombre d'erreurs avant d\u00e9clenchement alarme"
   },
   "alarm_duration": {

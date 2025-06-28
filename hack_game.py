@@ -62,6 +62,7 @@ def reload_settings():
 
 
 def main():
+    global GLOBAL_TIMER, MAX_ERRORS, ALARM_DURATION
     game = reset_game()
     print_intro()
 
@@ -84,11 +85,15 @@ def main():
             continue
 
         if cmd == "agartha":
-            admin_menu(os.path.join(base_path, "settings.json"))
+            result = admin_menu(os.path.join(base_path, "settings.json"))
             settings = reload_settings()
             MAX_ERRORS = settings["max_errors"]["value"]
             ALARM_DURATION = settings["alarm_duration"]["value"]
             GLOBAL_TIMER = settings["global_timer"]["value"]
+            if result == "reset":
+                print("\n*** TERMINAL RÉINITIALISÉ PAR L'ADMIN ***\n")
+                game = reset_game()
+                print_intro()
             continue
 
         if cmd == "reset":

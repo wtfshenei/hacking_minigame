@@ -17,11 +17,17 @@ def admin_menu(settings_path):
     while True:
         print("\n=== MENU ADMINISTRATEUR ===")
         print("1. Modifier les réglages")
-        print("2. Quitter")
+        print("2. Réinitialiser la session de piratage")
+        print("3. Quitter")
         choice = input("> ").strip()
         if choice == "1":
             edit_settings(settings, settings_path)
         elif choice == "2":
+            confirm = input(
+                "Confirmer le reset de la session ? (oui/non) : ").lower()
+            if confirm == "oui":
+                return "reset"
+        elif choice == "3":
             break
         else:
             print("Choix invalide.")
