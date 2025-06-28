@@ -12,5 +12,6 @@
   "max_errors": 3,
   "alarm_duration": 30,
   "block_duration": 300,
-  "inactivity_timeout": 60
+  "inactivity_timeout": 60,
+  "global_timer": 180
 }
