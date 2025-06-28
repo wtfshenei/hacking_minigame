@@ -1,6 +1,7 @@
 import time
 import json
 import os
+from anims import loading_bar
 
 # --- Load settings and command data ---
 base_path = os.path.dirname(os.path.abspath(__file__))
@@ -15,10 +16,12 @@ SEQUENCE = settings["sequence"]
 MAX_ERRORS = settings["max_errors"]
 ALARM_DURATION = settings["alarm_duration"]
 
+
 def print_intro():
     print("""\n*** TERMINAL DE PIRATAGE ***
 Tape 'help' pour voir la liste des commandes disponibles.
 """)
+
 
 def play_alarm():
     print("\nALAAAAAAARME !")
@@ -27,11 +30,13 @@ def play_alarm():
         time.sleep(1)
     print("\n🚨 ALARME DÉCLENCHÉE 🚨")
 
+
 def show_help():
     print("\nCommandes disponibles :")
     for cmd, data in commands_data["commands"].items():
         print(f"- {cmd} : {data['desc']}")
     print()
+
 
 def reset_game():
     return {
@@ -39,6 +44,7 @@ def reset_game():
         "errors": 0,
         "alarm": False
     }
+
 
 def main():
     game = reset_game()
@@ -82,12 +88,13 @@ def main():
         delay = commands_data["commands"][cmd].get("delay", 0)
         if delay > 0:
             print(f"Traitement de la commande '{cmd}'...")
-            time.sleep(delay)
+            loading_bar(delay)
 
         # Check if it's the correct command in the sequence
         if cmd == SEQUENCE[game["step"]]:
             game["step"] += 1
-            print(f"Commande acceptée ({cmd}). Progression : {game['step']}/{len(SEQUENCE)}")
+            print(
+                f"Commande acceptée ({cmd}). Progression : {game['step']}/{len(SEQUENCE)}")
             if game["step"] == len(SEQUENCE):
                 print("\n--- PIRATAGE RÉUSSI ---")
                 print("QR Code généré : murder_clue.png")
@@ -107,6 +114,7 @@ def main():
             time.sleep(5)
             game = reset_game()
             print_intro()
+
 
 if __name__ == "__main__":
     main()
