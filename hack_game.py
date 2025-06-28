@@ -2,6 +2,7 @@ import time
 import json
 import os
 from anims import loading_bar
+from admin_panel import admin_menu
 
 # --- Load settings and command data ---
 base_path = os.path.dirname(os.path.abspath(__file__))
@@ -12,10 +13,10 @@ with open(os.path.join(base_path, "settings.json"), "r", encoding="utf-8") as f:
 with open(os.path.join(base_path, "commands.json"), "r", encoding="utf-8") as f:
     commands_data = json.load(f)
 
-SEQUENCE = settings["sequence"]
-MAX_ERRORS = settings["max_errors"]
-ALARM_DURATION = settings["alarm_duration"]
-GLOBAL_TIMER = settings["global_timer"]
+SEQUENCE = settings["sequence"]["value"]
+MAX_ERRORS = settings["max_errors"]["value"]
+ALARM_DURATION = settings["alarm_duration"]["value"]
+GLOBAL_TIMER = settings["global_timer"]["value"]
 
 
 def format_time(seconds):
@@ -41,7 +42,8 @@ def play_alarm():
 def show_help():
     print("\nCommandes disponibles :")
     for cmd, data in commands_data["commands"].items():
-        print(f"- {cmd} : {data['desc']}")
+        if not data.get("hidden", False):
+            print(f"- {cmd} : {data['desc']}")
     print()
 
 
@@ -52,6 +54,11 @@ def reset_game():
         "alarm": False,
         "start_time": None
     }
+
+
+def reload_settings():
+    with open(os.path.join(base_path, "settings.json"), "r", encoding="utf-8") as f:
+        return json.load(f)
 
 
 def main():
@@ -74,6 +81,14 @@ def main():
         # Commands that should never count as errors or apply delay
         if cmd == "help":
             show_help()
+            continue
+
+        if cmd == "agartha":
+            admin_menu(os.path.join(base_path, "settings.json"))
+            settings = reload_settings()
+            MAX_ERRORS = settings["max_errors"]["value"]
+            ALARM_DURATION = settings["alarm_duration"]["value"]
+            GLOBAL_TIMER = settings["global_timer"]["value"]
             continue
 
         if cmd == "reset":
@@ -108,6 +123,20 @@ def main():
             print(f"Traitement de la commande '{cmd}' en cours...")
             loading_bar(delay)
 
+        # Exceptions
+        if cmd not in SEQUENCE or cmd != SEQUENCE[game["step"]]:
+            if cmd not in ("help", "agartha", "reset"):
+                print(f"Commande incorrecte à ce stade ({cmd}).")
+                game["errors"] += 1
+                if game["errors"] >= MAX_ERRORS:
+                    game["alarm"] = True
+                    play_alarm()
+                    print("\nLe terminal va redémarrer...\n")
+                    time.sleep(5)
+                    game = reset_game()
+                    print_intro()
+            continue
+
         # Check if it's the correct command in the sequence
         if cmd == SEQUENCE[game["step"]]:
             game["step"] += 1
@@ -121,17 +150,6 @@ def main():
                 game = reset_game()
                 print_intro()
             continue
-
-        # Wrong but valid command
-        print(f"Commande incorrecte à ce stade ({cmd}).")
-        game["errors"] += 1
-        if game["errors"] >= MAX_ERRORS:
-            game["alarm"] = True
-            play_alarm()
-            print("\nLe terminal va redémarrer...\n")
-            time.sleep(5)
-            game = reset_game()
-            print_intro()
 
 
 if __name__ == "__main__":

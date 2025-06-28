@@ -2,83 +2,108 @@
   "commands": {
     "scan": {
       "desc": "Analyse les ports ouverts du réseau.",
-      "delay": 10
+      "delay": 10,
+      "hidden": false
     },
     "connect": {
       "desc": "Établit une connexion à la machine distante.",
-      "delay": 15
+      "delay": 15,
+      "hidden": false
     },
     "inject": {
       "desc": "Injecte un payload dans le buffer cible.",
-      "delay": 5
+      "delay": 5,
+      "hidden": false
     },
     "decrypt": {
       "desc": "Déchiffre les fichiers trouvés.",
-      "delay": 30
+      "delay": 30,
+      "hidden": false
     },
     "access": {
       "desc": "Tente d’accéder aux fichiers système.",
-      "delay": 5
+      "delay": 5,
+      "hidden": false
     },
     "upload": {
       "desc": "Envoie un fichier de contrôle.",
-      "delay": 20
+      "delay": 20,
+      "hidden": false
     },
     "unlock": {
       "desc": "Déverrouille le système verrouillé.",
-      "delay": 15
+      "delay": 15,
+      "hidden": false
     },
     "extract": {
       "desc": "Récupère les données secrètes.",
-      "delay": 40
+      "delay": 40,
+      "hidden": false
     },
     "ping": {
       "desc": "Envoie un ping vers une IP.",
-      "delay": 10
+      "delay": 10,
+      "hidden": false
     },
     "traceroute": {
       "desc": "Affiche la route jusqu’à la cible.",
-      "delay": 0
+      "delay": 0,
+      "hidden": false
     },
     "whoami": {
       "desc": "Affiche l’identité de l’utilisateur courant.",
-      "delay": 0
+      "delay": 0,
+      "hidden": false
     },
     "ls": {
       "desc": "Liste les fichiers.",
-      "delay": 0
+      "delay": 0,
+      "hidden": false
     },
     "sudo": {
       "desc": "Tente une élévation de privilèges.",
-      "delay": 0
+      "delay": 0,
+      "hidden": false
     },
     "kill": {
       "desc": "Arrête un processus distant.",
-      "delay": 0
+      "delay": 0,
+      "hidden": false
     },
     "format": {
       "desc": "Efface un disque.",
-      "delay": 0
+      "delay": 0,
+      "hidden": false
     },
     "nmap": {
       "desc": "Scanne le réseau de manière brute.",
-      "delay": 0
+      "delay": 0,
+      "hidden": false
     },
     "rm": {
       "desc": "Supprime un fichier.",
-      "delay": 0
+      "delay": 0,
+      "hidden": false
     },
     "mkdir": {
       "desc": "Crée un nouveau dossier.",
-      "delay": 0
+      "delay": 0,
+      "hidden": false
     },
     "cd": {
       "desc": "Change de répertoire.",
-      "delay": 0
+      "delay": 0,
+      "hidden": false
     },
     "echo": {
       "desc": "Répète la commande.",
-      "delay": 0
+      "delay": 0,
+      "hidden": false
+    },
+    "agartha": {
+      "desc": "Menu admin",
+      "delay": 0,
+      "hidden": true
     }
   }
 }
