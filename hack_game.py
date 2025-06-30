@@ -70,8 +70,12 @@ def reload_settings():
         return json.load(f)
 
 
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def main():
-    global GLOBAL_TIMER, MAX_ERRORS, ALARM_DURATION
+    global GLOBAL_TIMER, MAX_ERRORS, ALARM_DURATION, SEQUENCE
     game = reset_game()
     print_intro()
 
@@ -96,17 +100,20 @@ def main():
         if cmd == "agartha":
             result = admin_menu(os.path.join(base_path, "settings.json"))
             settings = reload_settings()
+            SEQUENCE = settings["sequence"]["value"]
             MAX_ERRORS = settings["max_errors"]["value"]
             ALARM_DURATION = settings["alarm_duration"]["value"]
             GLOBAL_TIMER = settings["global_timer"]["value"]
             if result == "reset":
                 print("\n*** TERMINAL RÉINITIALISÉ PAR L'ADMIN ***\n")
+                clear_screen()
                 game = reset_game()
                 print_intro()
             continue
 
         if cmd == "reset":
             print("\n*** TERMINAL RÉINITIALISÉ ***\n")
+            clear_screen()
             game = reset_game()
             print_intro()
             continue
@@ -147,6 +154,7 @@ def main():
                     play_alarm()
                     print("\nLe terminal va redémarrer...\n")
                     time.sleep(5)
+                    clear_screen()
                     game = reset_game()
                     print_intro()
             continue
@@ -161,6 +169,7 @@ def main():
                 print("QR Code généré : murder_clue.png")
                 print("Réinitialisation dans 10 secondes...")
                 time.sleep(10)
+                clear_screen()
                 game = reset_game()
                 print_intro()
             continue
