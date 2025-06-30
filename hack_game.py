@@ -1,6 +1,7 @@
 import time
 import json
 import os
+import pygame
 from anims import loading_bar
 from admin_panel import admin_menu
 
@@ -32,10 +33,18 @@ Tape 'help' pour voir la liste des commandes disponibles.
 
 
 def play_alarm():
+    pygame.mixer.init()
+    sound_path = os.path.join(base_path, "assets", "alarme.wav")
+    alarm_sound = pygame.mixer.Sound(sound_path)
+    channel = alarm_sound.play(-1)  # -1 = infinite loop
+
     print("\nALAAAAAAARME !")
-    for t in range(ALARM_DURATION, 0, -1):
+    duration = ALARM_DURATION
+    for t in range(duration, 0, -1):
         print(f"  ... {t}")
         time.sleep(1)
+
+    channel.stop()
     print("\n🚨 ALARME DÉCLENCHÉE 🚨")
 
 
