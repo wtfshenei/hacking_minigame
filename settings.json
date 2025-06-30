@@ -1,15 +1,6 @@
 {
   "sequence": {
-    "value": [
-      "scan",
-      "connect",
-      "inject",
-      "decrypt",
-      "access",
-      "upload",
-      "unlock",
-      "extract"
-    ],
+    "value": "ls",
     "desc": "S\u00e9quence pour r\u00e9ussir le piratage"
   },
   "max_errors": {
@@ -17,7 +8,7 @@
     "desc": "Nombre d'erreurs avant d\u00e9clenchement alarme"
   },
   "alarm_duration": {
-    "value": 30,
+    "value": 10,
     "desc": "Dur\u00e9e alarme (son)"
   },
   "block_duration": {
@@ -31,5 +22,17 @@
   "global_timer": {
     "value": 180,
     "desc": "Temps maximal d'une session de piratage avant lancement alarme"
+  },
+  "block_time_on_alarm": {
+    "value": 20,
+    "desc": "Dur\u00e9e du blocage du terminal apr\u00e8s d\u00e9clenchement de l'alarme (en secondes)"
+  },
+  "victory_code_display_time": {
+    "value": 180,
+    "desc": "Dur\u00e9e d'affichage du code apr\u00e8s r\u00e9ussite (en secondes)"
+  },
+  "victory_code": {
+    "value": "1l0v35h3n31",
+    "desc": "Code certifiant la r\u00e9ussite du hack"
   }
 }

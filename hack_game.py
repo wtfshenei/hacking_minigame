@@ -26,8 +26,19 @@ def format_time(seconds):
     return f"{int(minutes):02}:{int(sec):02}"
 
 
+def format_duration(seconds):
+    if seconds < 60:
+        return f"{seconds} secondes"
+    elif seconds % 60 == 0:
+        return f"{seconds // 60} minutes"
+    else:
+        minutes = seconds // 60
+        sec = seconds % 60
+        return f"{minutes}m {sec}s"
+
+
 def print_intro():
-    print("""\n*** TERMINAL DE PC-SYDNEY ***
+    print("""\n*** TERMINAL DE COFFRE-SYDNEY-S7E35810 ***
 Tape 'help' pour voir la liste des commandes disponibles.
 """)
 
@@ -76,6 +87,7 @@ def clear_screen():
 
 def main():
     global GLOBAL_TIMER, MAX_ERRORS, ALARM_DURATION, SEQUENCE
+    global BLOCK_TIME_ON_ALARM, VICTORY_DISPLAY_TIME, VICTORY_CODE
     game = reset_game()
     print_intro()
 
@@ -104,6 +116,9 @@ def main():
             MAX_ERRORS = settings["max_errors"]["value"]
             ALARM_DURATION = settings["alarm_duration"]["value"]
             GLOBAL_TIMER = settings["global_timer"]["value"]
+            BLOCK_TIME_ON_ALARM = settings["block_time_on_alarm"]["value"]
+            VICTORY_DISPLAY_TIME = settings["victory_code_display_time"]["value"]
+            VICTORY_CODE = settings["victory_code"]["value"]
             if result == "reset":
                 print("\n*** TERMINAL RÉINITIALISÉ PAR L'ADMIN ***\n")
                 clear_screen()
@@ -120,8 +135,9 @@ def main():
 
         if game["alarm"]:
             play_alarm()
-            print("\nLe terminal va redémarrer...\n")
-            time.sleep(5)
+            print(
+                f"\nLe terminal est bloqué pour {format_duration(BLOCK_TIME_ON_ALARM)}...")
+            loading_bar(BLOCK_TIME_ON_ALARM)
             game = reset_game()
             print_intro()
             continue
@@ -132,8 +148,9 @@ def main():
             if game["errors"] >= MAX_ERRORS:
                 game["alarm"] = True
                 play_alarm()
-                print("\nLe terminal va redémarrer...\n")
-                time.sleep(5)
+                print(
+                    f"\nLe terminal est bloqué pour {format_duration(BLOCK_TIME_ON_ALARM)}...")
+                loading_bar(BLOCK_TIME_ON_ALARM)
                 game = reset_game()
                 print_intro()
             continue
@@ -152,8 +169,9 @@ def main():
                 if game["errors"] >= MAX_ERRORS:
                     game["alarm"] = True
                     play_alarm()
-                    print("\nLe terminal va redémarrer...\n")
-                    time.sleep(5)
+                    print(
+                        f"\nLe terminal est bloqué pour {format_duration(BLOCK_TIME_ON_ALARM)}...")
+                    loading_bar(BLOCK_TIME_ON_ALARM)
                     clear_screen()
                     game = reset_game()
                     print_intro()
@@ -166,9 +184,9 @@ def main():
                 f"Commande acceptée ({cmd}). Progression : {game['step']}/{len(SEQUENCE)}")
             if game["step"] == len(SEQUENCE):
                 print("\n--- PIRATAGE RÉUSSI ---")
-                print("QR Code généré : murder_clue.png")
-                print("Réinitialisation dans 10 secondes...")
-                time.sleep(10)
+                print(f"Code à transmettre au MJ : {VICTORY_CODE}")
+                print(f"(visible {format_duration(VICTORY_DISPLAY_TIME)})")
+                loading_bar(VICTORY_DISPLAY_TIME)
                 clear_screen()
                 game = reset_game()
                 print_intro()
