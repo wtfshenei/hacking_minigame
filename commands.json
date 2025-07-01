@@ -47,12 +47,12 @@
     },
     "traceroute": {
       "desc": "Montre le chemin jusqu'à la cible.",
-      "delay": 0,
+      "delay": 10,
       "hidden": false
     },
     "whoami": {
       "desc": "Affiche votre identité actuelle.",
-      "delay": 0,
+      "delay": 2,
       "hidden": false
     },
     "ls": {
@@ -67,27 +67,27 @@
     },
     "kill": {
       "desc": "Arrête un processus en cours.",
-      "delay": 0,
+      "delay": 40,
       "hidden": false
     },
     "format": {
       "desc": "Efface un périphérique de stockage.",
-      "delay": 0,
+      "delay": 50,
       "hidden": false
     },
     "nmap": {
       "desc": "Parcourt le réseau en profondeur.",
-      "delay": 10,
+      "delay": 15,
       "hidden": false
     },
     "rm": {
       "desc": "Supprime un fichier.",
-      "delay": 0,
+      "delay": 2,
       "hidden": false
     },
     "mkdir": {
       "desc": "Crée un nouveau dossier.",
-      "delay": 0,
+      "delay": 2,
       "hidden": false
     },
     "cd": {
@@ -97,7 +97,7 @@
     },
     "echo": {
       "desc": "Affiche un message à l'écran.",
-      "delay": 0,
+      "delay": 5,
       "hidden": false
     },
     "agartha": {
