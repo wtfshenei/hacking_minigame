@@ -2,14 +2,14 @@ import os
 from config_manager import ConfigManager
 
 # Initialize the configuration manager
+# base_path is used by ConfigManager to locate JSON files
 base_path = os.path.dirname(os.path.abspath(__file__))
 config = ConfigManager(base_path)
 
 
 def admin_menu(settings_path):
     """
-    Display the administrator menu and handle user choices.
-    Returns 'reset' if the hacking session should be reset.
+    Display the administrator menu and return 'reset' if the session should be reset.
     """
     while True:
         print("\n=== MENU ADMINISTRATEUR ===")
@@ -50,17 +50,17 @@ def edit_settings():
         if not choice.isdigit():
             print("Entrée invalide.")
             continue
-        choice = int(choice)
-        if choice == len(keys) + 1:
+        idx = int(choice)
+        if idx == len(keys) + 1:
             break
-        if 1 <= choice <= len(keys):
-            key = keys[choice - 1]
-            # Special handling for sequence: comma-separated list
+        if 1 <= idx <= len(keys):
+            key = keys[idx - 1]
+            # Special handling for 'sequence'
             if key == "sequence":
                 new_seq = input(
                     f"Entrez les commandes séparées par des virgules pour '{key}' : ").strip()
                 seq_list = [cmd.strip()
-                            for cmd in new_seq.split(',') if cmd.strip()]
+                            for cmd in new_seq.split(",") if cmd.strip()]
                 config._settings[key]["value"] = seq_list
             else:
                 new_val = input(f"Nouvelle valeur pour '{key}' : ").strip()
@@ -86,21 +86,21 @@ def edit_command_delays():
     keys = list(commands.keys())
     while True:
         print("\n--- Délais des commandes ---")
-        for idx, key in enumerate(keys, 1):
-            desc = commands[key].get("desc", key)
-            delay = commands[key].get("delay", 0)
-            print(f"{idx}. {key} : {desc} (délai actuel : {delay}s)")
+        for idx, cmd in enumerate(keys, 1):
+            desc = commands[cmd].get("desc", cmd)
+            delay = commands[cmd].get("delay", 0)
+            print(f"{idx}. {cmd} : {desc} (délai actuel : {delay}s)")
         print(f"{len(keys)+1}. Retour")
 
         choice = input("> ").strip()
         if not choice.isdigit():
             print("Entrée invalide.")
             continue
-        choice = int(choice)
-        if choice == len(keys) + 1:
+        idx = int(choice)
+        if idx == len(keys) + 1:
             break
-        if 1 <= choice <= len(keys):
-            cmd_key = keys[choice - 1]
+        if 1 <= idx <= len(keys):
+            cmd_key = keys[idx - 1]
             new_delay = input(
                 f"Nouveau délai (en secondes) pour '{cmd_key}' : ").strip()
             if new_delay.isdigit():

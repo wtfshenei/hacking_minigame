@@ -1,6 +1,7 @@
 import sys
 import time
 
+
 def loading_bar(duration):
     """
     Display a horizontal loading bar for the given duration (in seconds).

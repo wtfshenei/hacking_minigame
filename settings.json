@@ -1,7 +1,7 @@
 {
   "sequence": {
     "value": [
-      "scan",
+      "rm",
       "ls"
     ],
     "desc": "Séquence pour réussir le piratage"

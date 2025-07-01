@@ -1,6 +1,7 @@
 import json
 import os
 
+
 class ConfigManager:
     """
     Load and manage settings.json and commands.json.
@@ -12,6 +13,7 @@ class ConfigManager:
         config.save_settings()
         config.reload()
     """
+
     def __init__(self, base_path):
         self.settings_path = os.path.join(base_path, "settings.json")
         self.commands_path = os.path.join(base_path, "commands.json")
