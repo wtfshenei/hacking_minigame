@@ -5,81 +5,11 @@ import pygame
 from anims import loading_bar
 from admin_panel import admin_menu
 from config_manager import ConfigManager
+from console import timed_input, clear_screen, print_intro
 
 # Initialize configuration manager
 base_path = os.path.dirname(os.path.abspath(__file__))
 config = ConfigManager(base_path)
-
-# --- Non-blocking, echoing, cross-platform input with timeout ---
-try:
-    import msvcrt
-
-    def timed_input(prompt, timeout):
-        sys.stdout.write(prompt)
-        sys.stdout.flush()
-        input_str = ''
-        start = time.time()
-        while True:
-            if msvcrt.kbhit():
-                char = msvcrt.getwch()
-                if char in ('\r', '\n'):
-                    sys.stdout.write('\n')
-                    return input_str
-                elif char == '\b':
-                    if input_str:
-                        input_str = input_str[:-1]
-                        sys.stdout.write('\b \b')
-                else:
-                    input_str += char
-                    sys.stdout.write(char)
-                sys.stdout.flush()
-            if timeout is not None and time.time() - start >= timeout:
-                sys.stdout.write('\n')
-                return None
-            time.sleep(0.1)
-except ImportError:
-    import termios
-    import tty
-    import fcntl
-
-    def timed_input(prompt, timeout):
-        sys.stdout.write(prompt)
-        sys.stdout.flush()
-        input_str = ''
-        start = time.time()
-        fd = sys.stdin.fileno()
-        old_settings = termios.tcgetattr(fd)
-        old_flags = fcntl.fcntl(fd, fcntl.F_GETFL)
-        try:
-            # set raw mode and non-blocking
-            tty.setcbreak(fd)
-            fcntl.fcntl(fd, fcntl.F_SETFL, old_flags | os.O_NONBLOCK)
-            while True:
-                try:
-                    ch = sys.stdin.read(1)
-                except (IOError, OSError):
-                    ch = ''
-                if ch:
-                    if ch in ('\n', '\r'):
-                        sys.stdout.write('\n')
-                        return input_str
-                    elif ch == '\x7f':  # backspace
-                        if input_str:
-                            input_str = input_str[:-1]
-                            sys.stdout.write('\b \b')
-                    else:
-                        input_str += ch
-                        sys.stdout.write(ch)
-                    sys.stdout.flush()
-                if timeout is not None and time.time() - start >= timeout:
-                    sys.stdout.write('\n')
-                    return None
-                time.sleep(0.1)
-        finally:
-            # restore settings
-            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-            fcntl.fcntl(fd, fcntl.F_SETFL, old_flags)
-
 
 class Game:
     """Encapsulates the hacking game logic and state."""
@@ -95,13 +25,6 @@ class Game:
         self.errors = 0
         self.alarm = False
         self.start_time = None
-
-    def print_intro(self):
-        """Print the game introduction banner."""
-        print("""
-*** TERMINAL DE COFFRE-SYDNEY-S7E35810 ***
-Tape 'help' pour voir les commandes disponibles.
-""")
 
     def format_time(self, seconds):
         """Format seconds as MM:SS."""
@@ -130,7 +53,7 @@ Tape 'help' pour voir les commandes disponibles.
             print(f"  ... {t}")
             time.sleep(1)
         channel.stop()
-        print("\n🚨 ALARME DÉCLENCHÉE 🚨")
+        print("\n🚨 ALARME DÉCLÉNCHÉE 🚨")
 
     def show_help(self):
         """Display the help text for all non-hidden commands."""
@@ -145,23 +68,21 @@ Tape 'help' pour voir les commandes disponibles.
         self.is_blocking = True
         self.play_alarm()
         block = self.config.block_time_on_alarm
-        print(
-            f"\nLe terminal est bloqué pour {self.format_duration(block)}...")
+        print(f"\nLe terminal est bloqué pour {self.format_duration(block)}...")
         loading_bar(block)
         self.is_blocking = False
         self.reset()
-        self.print_intro()
+        print_intro()
 
     def run(self):
         """Main game loop."""
-        self.print_intro()
+        print_intro()
         while True:
             # Check global timer
             if self.start_time:
                 elapsed = int(time.time() - self.start_time)
                 remaining = max(self.config.global_timer - elapsed, 0)
-                print(
-                    f"Durée session restante : {self.format_time(remaining)}")
+                print(f"Durée session restante : {self.format_time(remaining)}")
                 if remaining == 0:
                     self.alarm = True
 
@@ -173,9 +94,9 @@ Tape 'help' pour voir les commandes disponibles.
             if cmd_raw is None:
                 print("\nSession expirée pour cause d'inactivité.")
                 time.sleep(2)
-                os.system('cls' if os.name == 'nt' else 'clear')
+                clear_screen()
                 self.reset()
-                self.print_intro()
+                print_intro()
                 continue
 
             cmd = cmd_raw.strip().lower()
@@ -191,15 +112,15 @@ Tape 'help' pour voir les commandes disponibles.
                 self.config.reload()
                 if result == "reset":
                     print("\n*** TERMINAL RÉINITIALISÉ PAR L'ADMIN ***\n")
-                    os.system('cls' if os.name == 'nt' else 'clear')
+                    clear_screen()
                     self.reset()
-                    self.print_intro()
+                    print_intro()
                 continue
             if cmd == "reset":
                 print("\n*** TERMINAL RÉINITIALISÉ ***\n")
-                os.system('cls' if os.name == 'nt' else 'clear')
+                clear_screen()
                 self.reset()
-                self.print_intro()
+                print_intro()
                 continue
 
             # Alarm state
@@ -234,20 +155,17 @@ Tape 'help' pour voir les commandes disponibles.
 
             # Correct command
             self.step += 1
-            print(
-                f"Commande acceptée ({cmd}). Progression : {self.step}/{len(self.config.sequence)}")
+            print(f"Commande acceptée ({cmd}). Progression : {self.step}/{len(self.config.sequence)}")
             if self.step == len(self.config.sequence):
                 print("\n--- PIRATAGE RÉUSSI ---")
                 print(f"Code à transmettre au MJ : {self.config.victory_code}")
-                print(
-                    f"(Les portes restent ouvertes pour : {self.format_duration(self.config.victory_display_time)})")
+                print(f"(Les portes restent ouvertes pour : {self.format_duration(self.config.victory_display_time)})")
                 self.is_blocking = True
                 loading_bar(self.config.victory_display_time)
                 self.is_blocking = False
-                os.system('cls' if os.name == 'nt' else 'clear')
+                clear_screen()
                 self.reset()
-                self.print_intro()
-
+                print_intro()
 
 if __name__ == "__main__":
     Game(config).run()
