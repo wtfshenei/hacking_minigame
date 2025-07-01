@@ -1,82 +1,82 @@
 {
   "commands": {
     "scan": {
-      "desc": "Analyse les ports ouverts du r\u00e9seau.",
+      "desc": "Explore le réseau pour trouver des accès possibles.",
       "delay": 10,
       "hidden": false
     },
     "connect": {
-      "desc": "\u00c9tablit une connexion \u00e0 la machine distante.",
+      "desc": "Se connecte à la machine cible.",
       "delay": 15,
       "hidden": false
     },
     "inject": {
-      "desc": "Injecte un payload dans le buffer cible.",
+      "desc": "Insère un petit programme dans le système cible.",
       "delay": 5,
       "hidden": false
     },
     "decrypt": {
-      "desc": "D\u00e9chiffre les fichiers trouv\u00e9s.",
+      "desc": "Décode les fichiers protégés.",
       "delay": 30,
       "hidden": false
     },
     "access": {
-      "desc": "Tente d\u2019acc\u00e9der aux fichiers syst\u00e8me.",
+      "desc": "Ouvre l'accès aux fichiers du système.",
       "delay": 5,
       "hidden": false
     },
     "upload": {
-      "desc": "Envoie un fichier de contr\u00f4le.",
+      "desc": "Envoie un fichier vers la machine distante.",
       "delay": 20,
       "hidden": false
     },
     "unlock": {
-      "desc": "D\u00e9verrouille le syst\u00e8me verrouill\u00e9.",
+      "desc": "Déverrouille le système sécurisé.",
       "delay": 15,
       "hidden": false
     },
     "extract": {
-      "desc": "R\u00e9cup\u00e8re les donn\u00e9es secr\u00e8tes.",
+      "desc": "Récupère des informations.",
       "delay": 40,
       "hidden": false
     },
     "ping": {
-      "desc": "Envoie un ping vers une IP.",
+      "desc": "Teste la connexion avec une adresse réseau.",
       "delay": 10,
       "hidden": false
     },
     "traceroute": {
-      "desc": "Affiche la route jusqu\u2019\u00e0 la cible.",
+      "desc": "Montre le chemin jusqu'à la cible.",
       "delay": 0,
       "hidden": false
     },
     "whoami": {
-      "desc": "Affiche l\u2019identit\u00e9 de l\u2019utilisateur courant.",
+      "desc": "Affiche votre identité actuelle.",
       "delay": 0,
       "hidden": false
     },
     "ls": {
-      "desc": "Liste les fichiers.",
+      "desc": "Affiche la liste des fichiers.",
       "delay": 0,
       "hidden": false
     },
     "sudo": {
-      "desc": "Tente une \u00e9l\u00e9vation de privil\u00e8ges.",
+      "desc": "Demande des droits d'administrateur.",
       "delay": 0,
       "hidden": false
     },
     "kill": {
-      "desc": "Arr\u00eate un processus distant.",
+      "desc": "Arrête un processus en cours.",
       "delay": 0,
       "hidden": false
     },
     "format": {
-      "desc": "Efface un disque.",
+      "desc": "Efface un périphérique de stockage.",
       "delay": 0,
       "hidden": false
     },
     "nmap": {
-      "desc": "Scanne le r\u00e9seau de mani\u00e8re brute.",
+      "desc": "Parcourt le réseau en profondeur.",
       "delay": 10,
       "hidden": false
     },
@@ -86,22 +86,22 @@
       "hidden": false
     },
     "mkdir": {
-      "desc": "Cr\u00e9e un nouveau dossier.",
+      "desc": "Crée un nouveau dossier.",
       "delay": 0,
       "hidden": false
     },
     "cd": {
-      "desc": "Change de r\u00e9pertoire.",
+      "desc": "Change de dossier.",
       "delay": 0,
       "hidden": false
     },
     "echo": {
-      "desc": "R\u00e9p\u00e8te la commande.",
+      "desc": "Affiche un message à l'écran.",
       "delay": 0,
       "hidden": false
     },
     "agartha": {
-      "desc": "Menu admin",
+      "desc": "Ouvre le menu administrateur.",
       "delay": 0,
       "hidden": true
     }
