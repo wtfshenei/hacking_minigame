@@ -5,7 +5,6 @@ import sys
 
 # Non-blocking, echoing, cross-platform input with timeout
 try:
-    # Windows
     import msvcrt
 
     def timed_input(prompt, timeout):
@@ -32,7 +31,6 @@ try:
                 return None
             time.sleep(0.1)
 except ImportError:
-    # POSIX
     import termios
     import tty
     import fcntl
@@ -46,7 +44,6 @@ except ImportError:
         old_settings = termios.tcgetattr(fd)
         old_flags = fcntl.fcntl(fd, fcntl.F_GETFL)
         try:
-            # set raw mode and non-blocking
             tty.setcbreak(fd)
             fcntl.fcntl(fd, fcntl.F_SETFL, old_flags | os.O_NONBLOCK)
             while True:
@@ -58,7 +55,7 @@ except ImportError:
                     if ch in ('\n', '\r'):
                         sys.stdout.write('\n')
                         return input_str
-                    elif ch == '\x7f':  # backspace
+                    elif ch == '\x7f':
                         if input_str:
                             input_str = input_str[:-1]
                             sys.stdout.write('\b \b')
@@ -71,7 +68,6 @@ except ImportError:
                     return None
                 time.sleep(0.1)
         finally:
-            # restore settings
             termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
             fcntl.fcntl(fd, fcntl.F_SETFL, old_flags)
 
@@ -91,15 +87,18 @@ def load_settings():
         return json.load(f)
 
 
-settings = load_settings()
+def load_commands():
+    with open(os.path.join(base_path, "commands.json"), "r", encoding="utf-8") as f:
+        return json.load(f)
 
-with open(os.path.join(base_path, "commands.json"), "r", encoding="utf-8") as f:
-    commands_data = json.load(f)
+
+settings = load_settings()
+commands_data = load_commands()
 
 
 def apply_settings():
     global SEQUENCE, MAX_ERRORS, ALARM_DURATION, GLOBAL_TIMER
-    global BLOCK_TIME_ON_ALARM, VICTORY_DISPLAY_TIME, VICTORY_CODE, INACTIVITY_TIMEOUT
+    global BLOCK_TIME_ON_ALARM, VICTORY_DISPLAY_TIME, VICTORY_CODE, INACTIVITY_TIMEOUT, commands_data
     seq_val = settings["sequence"]["value"]
     SEQUENCE = seq_val if isinstance(seq_val, list) else [seq_val]
     MAX_ERRORS = settings["max_errors"]["value"]
@@ -109,6 +108,8 @@ def apply_settings():
     VICTORY_DISPLAY_TIME = settings["victory_code_display_time"]["value"]
     VICTORY_CODE = settings["victory_code"]["value"]
     INACTIVITY_TIMEOUT = settings["inactivity_timeout"]["value"]
+    # Reload commands data to apply any delay modifications
+    commands_data = load_commands()
 
 
 apply_settings()

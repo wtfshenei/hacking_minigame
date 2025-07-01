@@ -1,12 +1,12 @@
 {
   "commands": {
     "scan": {
-      "desc": "Analyse les ports ouverts du réseau.",
+      "desc": "Analyse les ports ouverts du r\u00e9seau.",
       "delay": 10,
       "hidden": false
     },
     "connect": {
-      "desc": "Établit une connexion à la machine distante.",
+      "desc": "\u00c9tablit une connexion \u00e0 la machine distante.",
       "delay": 15,
       "hidden": false
     },
@@ -16,27 +16,27 @@
       "hidden": false
     },
     "decrypt": {
-      "desc": "Déchiffre les fichiers trouvés.",
+      "desc": "D\u00e9chiffre les fichiers trouv\u00e9s.",
       "delay": 30,
       "hidden": false
     },
     "access": {
-      "desc": "Tente d’accéder aux fichiers système.",
+      "desc": "Tente d\u2019acc\u00e9der aux fichiers syst\u00e8me.",
       "delay": 5,
       "hidden": false
     },
     "upload": {
-      "desc": "Envoie un fichier de contrôle.",
+      "desc": "Envoie un fichier de contr\u00f4le.",
       "delay": 20,
       "hidden": false
     },
     "unlock": {
-      "desc": "Déverrouille le système verrouillé.",
+      "desc": "D\u00e9verrouille le syst\u00e8me verrouill\u00e9.",
       "delay": 15,
       "hidden": false
     },
     "extract": {
-      "desc": "Récupère les données secrètes.",
+      "desc": "R\u00e9cup\u00e8re les donn\u00e9es secr\u00e8tes.",
       "delay": 40,
       "hidden": false
     },
@@ -46,12 +46,12 @@
       "hidden": false
     },
     "traceroute": {
-      "desc": "Affiche la route jusqu’à la cible.",
+      "desc": "Affiche la route jusqu\u2019\u00e0 la cible.",
       "delay": 0,
       "hidden": false
     },
     "whoami": {
-      "desc": "Affiche l’identité de l’utilisateur courant.",
+      "desc": "Affiche l\u2019identit\u00e9 de l\u2019utilisateur courant.",
       "delay": 0,
       "hidden": false
     },
@@ -61,12 +61,12 @@
       "hidden": false
     },
     "sudo": {
-      "desc": "Tente une élévation de privilèges.",
+      "desc": "Tente une \u00e9l\u00e9vation de privil\u00e8ges.",
       "delay": 0,
       "hidden": false
     },
     "kill": {
-      "desc": "Arrête un processus distant.",
+      "desc": "Arr\u00eate un processus distant.",
       "delay": 0,
       "hidden": false
     },
@@ -76,8 +76,8 @@
       "hidden": false
     },
     "nmap": {
-      "desc": "Scanne le réseau de manière brute.",
-      "delay": 0,
+      "desc": "Scanne le r\u00e9seau de mani\u00e8re brute.",
+      "delay": 10,
       "hidden": false
     },
     "rm": {
@@ -86,17 +86,17 @@
       "hidden": false
     },
     "mkdir": {
-      "desc": "Crée un nouveau dossier.",
+      "desc": "Cr\u00e9e un nouveau dossier.",
       "delay": 0,
       "hidden": false
     },
     "cd": {
-      "desc": "Change de répertoire.",
+      "desc": "Change de r\u00e9pertoire.",
       "delay": 0,
       "hidden": false
     },
     "echo": {
-      "desc": "Répète la commande.",
+      "desc": "R\u00e9p\u00e8te la commande.",
       "delay": 0,
       "hidden": false
     },
