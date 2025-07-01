@@ -1,21 +1,22 @@
 {
   "sequence": {
     "value": [
+      "scan",
       "ls"
     ],
-    "desc": "S\u00e9quence pour r\u00e9ussir le piratage"
+    "desc": "Séquence pour réussir le piratage"
   },
   "max_errors": {
     "value": 3,
-    "desc": "Nombre d'erreurs avant d\u00e9clenchement alarme"
+    "desc": "Nombre d'erreurs avant déclenchement alarme"
   },
   "alarm_duration": {
     "value": 10,
-    "desc": "Dur\u00e9e alarme (son)"
+    "desc": "Durée alarme (son)"
   },
   "inactivity_timeout": {
-    "value": 10,
-    "desc": "Temps d'inactivit\u00e9 maximum avant r\u00e9initialisation"
+    "value": 70,
+    "desc": "Temps d'inactivité maximum avant réinitialisation"
   },
   "global_timer": {
     "value": 180,
@@ -23,14 +24,14 @@
   },
   "block_time_on_alarm": {
     "value": 20,
-    "desc": "Dur\u00e9e de blocage du terminal apr\u00e8s d\u00e9clenchement de l'alarme (en secondes)"
+    "desc": "Durée de blocage du terminal après déclenchement de l'alarme (en secondes)"
   },
   "victory_code_display_time": {
     "value": 60,
-    "desc": "Dur\u00e9e d'affichage du code apr\u00e8s r\u00e9ussite (en secondes)"
+    "desc": "Durée d'affichage du code après réussite (en secondes)"
   },
   "victory_code": {
     "value": "1l0v35h3n31",
-    "desc": "Code certifiant la r\u00e9ussite du hack"
+    "desc": "Code certifiant la réussite du hack"
   }
 }
