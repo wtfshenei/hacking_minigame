@@ -92,6 +92,6 @@ def clear_screen():
 def print_intro():
     """Print the game introduction banner."""
     print("""
-*** TERMINAL DE COFFRE-MICHMISH-S7E35810 ***
+*** TERMINAL DE PC-SYDNEY-S7E35810 ***
 Tape 'help' pour voir les commandes disponibles.
 """)
