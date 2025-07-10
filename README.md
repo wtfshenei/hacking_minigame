@@ -74,6 +74,7 @@ Exemples de réglages modifiables :
 - Le MJ peut accéder au menu admin (`agartha`) **directement dans le terminal** pour adapter la difficulté ou remettre à zéro une session.
 - Le code de victoire n’est affiché que pendant X secondes — prévoir de le noter rapidement.
 - Pour rendre chaque session unique, pensez à réordonner les commandes via `shuffle_commands.py`.
+- Lancer le jeu en ouvrant un terminal et taper `python hack_game.py`.
 
 ---
 
@@ -145,5 +146,6 @@ It features stress mechanics such as timers, execution delays, errors, and sound
 - The GM can enter the secret `agartha` command in terminal to tweak game settings at any moment.
 - The victory code is displayed only for a limited duration — be quick to write it down.
 - Use `shuffle_commands.py` to make each run more unpredictable.
+- Start the game by opening a terminal and typing `python hack_game.py`.
 
 ---
