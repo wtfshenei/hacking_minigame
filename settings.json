@@ -1,14 +1,7 @@
 {
   "sequence": {
     "value": [
-      "scan",
-      "connect",
-      "inject",
-      "decrypt",
-      "access",
-      "upload",
-      "unlock",
-      "extract"
+      "ls"
     ],
     "desc": "Séquence pour réussir le piratage"
   },
@@ -17,7 +10,7 @@
     "desc": "Nombre d'erreurs avant déclenchement alarme"
   },
   "alarm_duration": {
-    "value": 30,
+    "value": 0,
     "desc": "Durée alarme (son)"
   },
   "inactivity_timeout": {
@@ -29,7 +22,7 @@
     "desc": "Temps maximal d'une session de piratage avant lancement alarme"
   },
   "block_time_on_alarm": {
-    "value": 300,
+    "value": 60,
     "desc": "Durée de blocage du terminal après déclenchement de l'alarme (en secondes)"
   },
   "victory_code_display_time": {
@@ -37,7 +30,7 @@
     "desc": "Durée d'affichage du code après réussite (en secondes)"
   },
   "victory_code": {
-    "value": "v4n0uch4f0u1n",
+    "value": "Le gateau est un mensonge",
     "desc": "Code certifiant la réussite du hack"
   }
 }

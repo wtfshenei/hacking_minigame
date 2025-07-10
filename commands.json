@@ -1,48 +1,23 @@
 {
   "commands": {
-    "scan": {
-      "desc": "Explore le réseau pour trouver des accès possibles.",
-      "delay": 10,
-      "hidden": false
-    },
-    "connect": {
-      "desc": "Se connecte à la machine cible.",
-      "delay": 15,
-      "hidden": false
-    },
-    "inject": {
-      "desc": "Insère un petit programme dans le système cible.",
-      "delay": 5,
-      "hidden": false
-    },
-    "decrypt": {
-      "desc": "Décode les fichiers protégés.",
-      "delay": 30,
-      "hidden": false
-    },
-    "access": {
-      "desc": "Ouvre l'accès aux fichiers du système.",
-      "delay": 5,
-      "hidden": false
-    },
     "upload": {
       "desc": "Envoie un fichier vers la machine distante.",
       "delay": 20,
       "hidden": false
     },
-    "unlock": {
-      "desc": "Déverrouille le système sécurisé.",
+    "nmap": {
+      "desc": "Parcourt le réseau en profondeur.",
       "delay": 15,
       "hidden": false
     },
-    "extract": {
-      "desc": "Récupère des informations.",
-      "delay": 40,
+    "format": {
+      "desc": "Efface un périphérique de stockage.",
+      "delay": 50,
       "hidden": false
     },
-    "ping": {
-      "desc": "Teste la connexion avec une adresse réseau.",
-      "delay": 10,
+    "sudo": {
+      "desc": "Demande des droits d'administrateur.",
+      "delay": 0,
       "hidden": false
     },
     "traceroute": {
@@ -55,14 +30,39 @@
       "delay": 2,
       "hidden": false
     },
-    "ls": {
-      "desc": "Affiche la liste des fichiers.",
+    "decrypt": {
+      "desc": "Décode les fichiers protégés.",
+      "delay": 30,
+      "hidden": false
+    },
+    "echo": {
+      "desc": "Affiche un message à l'écran.",
+      "delay": 5,
+      "hidden": false
+    },
+    "scan": {
+      "desc": "Explore le réseau pour trouver des accès possibles.",
+      "delay": 10,
+      "hidden": false
+    },
+    "inject": {
+      "desc": "Insère un petit programme dans le système cible.",
+      "delay": 5,
+      "hidden": false
+    },
+    "unlock": {
+      "desc": "Déverrouille le système sécurisé.",
+      "delay": 15,
+      "hidden": false
+    },
+    "cd": {
+      "desc": "Change de dossier.",
       "delay": 0,
       "hidden": false
     },
-    "sudo": {
-      "desc": "Demande des droits d'administrateur.",
-      "delay": 0,
+    "access": {
+      "desc": "Ouvre l'accès aux fichiers du système.",
+      "delay": 5,
       "hidden": false
     },
     "kill": {
@@ -70,14 +70,14 @@
       "delay": 40,
       "hidden": false
     },
-    "format": {
-      "desc": "Efface un périphérique de stockage.",
-      "delay": 50,
+    "connect": {
+      "desc": "Se connecte à la machine cible.",
+      "delay": 15,
       "hidden": false
     },
-    "nmap": {
-      "desc": "Parcourt le réseau en profondeur.",
-      "delay": 15,
+    "ping": {
+      "desc": "Teste la connexion avec une adresse réseau.",
+      "delay": 10,
       "hidden": false
     },
     "rm": {
@@ -90,14 +90,14 @@
       "delay": 2,
       "hidden": false
     },
-    "cd": {
-      "desc": "Change de dossier.",
+    "ls": {
+      "desc": "Affiche la liste des fichiers.",
       "delay": 0,
       "hidden": false
     },
-    "echo": {
-      "desc": "Affiche un message à l'écran.",
-      "delay": 5,
+    "extract": {
+      "desc": "Récupère des informations.",
+      "delay": 40,
       "hidden": false
     },
     "agartha": {

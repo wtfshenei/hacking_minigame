@@ -11,6 +11,7 @@ from console import timed_input, clear_screen, print_intro
 base_path = os.path.dirname(os.path.abspath(__file__))
 config = ConfigManager(base_path)
 
+
 class Game:
     """Encapsulates the hacking game logic and state."""
 
@@ -68,9 +69,11 @@ class Game:
         self.is_blocking = True
         self.play_alarm()
         block = self.config.block_time_on_alarm
-        print(f"\nLe terminal est bloqué pour {self.format_duration(block)}...")
+        print(
+            f"\nLe terminal est bloqué pour {self.format_duration(block)}...")
         loading_bar(block)
         self.is_blocking = False
+        clear_screen()
         self.reset()
         print_intro()
 
@@ -82,7 +85,8 @@ class Game:
             if self.start_time:
                 elapsed = int(time.time() - self.start_time)
                 remaining = max(self.config.global_timer - elapsed, 0)
-                print(f"Durée session restante : {self.format_time(remaining)}")
+                print(
+                    f"Durée session restante : {self.format_time(remaining)}")
                 if remaining == 0:
                     self.alarm = True
 
@@ -155,17 +159,20 @@ class Game:
 
             # Correct command
             self.step += 1
-            print(f"Commande acceptée ({cmd}). Progression : {self.step}/{len(self.config.sequence)}")
+            print(
+                f"Commande acceptée ({cmd}). Progression : {self.step}/{len(self.config.sequence)}")
             if self.step == len(self.config.sequence):
                 print("\n--- PIRATAGE RÉUSSI ---")
                 print(f"Code à transmettre au MJ : {self.config.victory_code}")
-                print(f"(Les portes restent ouvertes pour : {self.format_duration(self.config.victory_display_time)})")
+                print(
+                    f"(Les portes restent ouvertes pour : {self.format_duration(self.config.victory_display_time)})")
                 self.is_blocking = True
                 loading_bar(self.config.victory_display_time)
                 self.is_blocking = False
                 clear_screen()
                 self.reset()
                 print_intro()
+
 
 if __name__ == "__main__":
     Game(config).run()
